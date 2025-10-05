@@ -32,8 +32,6 @@ This is a **Project Overpowered - Skyblock** Minecraft server featuring a beginn
 - **Applied Energistics 2** - Advanced storage and automation
 - **Botania** - Nature-based magic and automation
 - **Industrial Foregoing** - Modern industrial automation
-- **Thermal Expansion** - Machines and power systems
-- **Ex Nihilo** - Essential skyblock resource generation
 - **FTB Quests** - Guided progression system
 - *And many more quality mods!*
 
