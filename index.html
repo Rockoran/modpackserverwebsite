@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Overpowered - Skyblock Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #ecf0f1;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .hero-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .server-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-card h3 {
+            color: #3498db;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .download-btn, .server-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .download-btn:hover, .server-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #c0392b, #a93226);
+        }
+
+        .mods-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .mod-item {
+            background: rgba(52, 152, 219, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .mod-item:hover {
+            background: rgba(52, 152, 219, 0.3);
+            transform: translateX(5px);
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            background: rgba(46, 204, 113, 0.2);
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #2ecc71;
+            transition: all 0.3s ease;
+        }
+
+        .features-list li:hover {
+            background: rgba(46, 204, 113, 0.3);
+            transform: translateX(5px);
+        }
+
+        .server-details {
+            background: rgba(230, 126, 34, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e67e22;
+            margin: 20px 0;
+        }
+
+        .discord-section {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #7289da, #5b6eae);
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .discord-btn {
+            background: #7289da;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .discord-btn:hover {
+            background: #5b6eae;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .highlight {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        .warning {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .server-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏗️ Project Overpowered - Skyblock Server</h1>
+            <p class="subtitle">Start with nothing and get everything! Join our OP Skyblock adventure!</p>
+        </header>
+
+        <div class="hero-section">
+            <h2>🚀 Welcome to the Ultimate Skyblock Experience!</h2>
+            <p>Experience the most <span class="highlight">beginner-friendly skyblock modpack</span> with over <span class="highlight">150+ quests</span> designed to make you overpowered in just a few hours of gameplay!</p>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <a href="https://www.curseforge.com/minecraft/modpacks/project-overpowered" class="download-btn" target="_blank">
+                    📦 Download Modpack from CurseForge
+                </a>
+                <a href="https://discord.gg/bAuc7WvRUd" class="server-link" target="_blank">
+                    💬 Join Our Discord
+                </a>
+            </div>
+        </div>
+
+        <div class="server-info">
+            <div class="info-card">
+                <h3>🎯 Server Features</h3>
+                <ul class="features-list">
+                    <li>✅ Minimal grind gameplay</li>
+                    <li>✅ Become OP in hours, not days</li>
+                    <li>✅ Custom endgame content</li>
+                    <li>✅ 150+ guided quests</li>
+                    <li>✅ Lightweight (~150 mods)</li>
+                    <li>✅ Beginner-friendly design</li>
+                    <li>✅ Active community</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>⚙️ Server Information</h3>
+                <div class="server-details">
+                    <p><strong>🎮 Modpack:</strong> Project Overpowered - Skyblock</p>
+                    <p><strong>🏷️ Version:</strong> Latest (Check CurseForge)</p>
+                    <p><strong>👥 Player Slots:</strong> Maximum 20 players online</p>
+                    <p><strong>🌍 Server IP:</strong> <span class="highlight">54.39.125.199:25566</span></p>
+                    <p><strong>📋 Whitelist:</strong> <span style="color: #2ecc71;">None - Join Anytime!</span></p>
+                </div>
+                <div class="warning" style="background: rgba(46, 204, 113, 0.2); border-color: #2ecc71;">
+                    <strong>✅ Server Ready:</strong> No whitelist required! Simply connect with the IP above and start playing immediately.
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>🎲 Gameplay Style</h3>
+                <p>This modpack is designed to eliminate the traditional skyblock grind. With carefully balanced progression and custom recipes, you'll experience rapid advancement through tech trees and magical systems.</p>
+                <br>
+                <p><strong>Perfect for:</strong></p>
+                <ul class="features-list">
+                    <li>New modded players</li>
+                    <li>Casual gamers</li>
+                    <li>Groups wanting quick progression</li>
+                    <li>Players who love OP gameplay</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mods-section">
+            <h2>🔧 Featured Mods in Our Server</h2>
+            <p>The modpack includes approximately <span class="highlight">150 carefully selected mods</span> for the ultimate skyblock experience:</p>
+            
+            <div class="mods-grid">
+                <div class="mod-item">
+                    <strong>⚡ Project E/EX</strong><br>
+                    Transmutation and EMC systems for resource conversion
+                </div>
+                <div class="mod-item">
+                    <strong>🔬 Mekanism</strong><br>
+                    Advanced technology and power generation
+                </div>
+                <div class="mod-item">
+                    <strong>🐔 Chickens</strong><br>
+                    Automated resource generation through chickens
+                </div>
+                <div class="mod-item">
+                    <strong>💾 Applied Energistics 2</strong><br>
+                    Advanced storage and automation systems
+                </div>
+                <div class="mod-item">
+                    <strong>🌸 Botania</strong><br>
+                    Nature-based magic and automation
+                </div>
+                <div class="mod-item">
+                    <strong>🌿 Roots</strong><br>
+                    Druidic magic and natural spells
+                </div>
+                <div class="mod-item">
+                    <strong>🏭 Industrial Foregoing</strong><br>
+                    Modern industrial automation
+                </div>
+                <div class="mod-item">
+                    <strong>🔧 Modular Machinery</strong><br>
+                    Custom endgame multiblock structures
+                </div>
+                <div class="mod-item">
+                    <strong>📋 FTB Quests</strong><br>
+                    Guided progression with 150+ quests
+                </div>
+                <div class="mod-item">
+                    <strong>⚙️ Thermal Expansion</strong><br>
+                    Machines and power systems
+                </div>
+                <div class="mod-item">
+                    <strong>🌳 Ex Nihilo</strong><br>
+                    Essential skyblock resource generation
+                </div>
+                <div class="mod-item">
+                    <strong>+ Many More!</strong><br>
+                    Quality of life, decoration, and utility mods
+                </div>
+            </div>
+        </div>
+
+        <div class="mods-section">
+            <h2>🚀 Server Added Mods</h2>
+            <p>Our server includes <span class="highlight">additional exclusive mods</span> not found in the base modpack for enhanced gameplay and server management:</p>
+            
+            <div class="mods-grid">
+                <div class="mod-item" style="background: rgba(241, 196, 15, 0.2); border-left-color: #f1c40f;">
+                    <strong>� LagGoggles</strong><br>
+                    Visual lag profiler - see lag sources in the world with color-coded overlays. Perfect for identifying performance issues and optimizing builds.
+                    <a href="https://www.curseforge.com/minecraft/mc-mods/laggoggles" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;">📦 Download Laggoggles</a>
+                </div>
+                </div>
+                <div class="mod-item" style="background: rgba(241, 196, 15, 0.2); border-left-color: #f1c40f;">
+                    <strong>👥 ProjectETeams</strong><br>
+                    Share EMC Network and Knowledge with your FTB Team members. Collaborate on Project E progression and share transmutation resources.
+                    <br><br>
+                    <a href="https://www.curseforge.com/minecraft/mc-mods/projecteteams" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;">📦 Download ProjectETeams</a>
+                </div>
+                <div class="mod-item" style="background: rgba(241, 196, 15, 0.2); border-left-color: #f1c40f;">
+                    <strong>⚙️ TickCentral</strong><br>
+                    Required dependency for LagGoggles - provides Mixin compatibility and improved performance monitoring capabilities.
+                    <br><br>
+                    <a href="https://www.curseforge.com/minecraft/mc-mods/tickcentral" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;">📦 Download TickCentral</a>
+                </div>
+
+            </div>
+            
+            <div class="warning" style="background: rgba(241, 196, 15, 0.2); border-color: #f1c40f;">
+                <strong>📝 Server Enhancement Features:</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong>🔍 Performance Monitoring:</strong> LagGoggles lets players and admins visually identify lag sources</li>
+                    <li><strong>👥 Team Collaboration:</strong> ProjectETeams enables shared EMC networks for team gameplay</li>
+                    <li><strong>⚡ Optimized Experience:</strong> Additional dependencies ensure smooth mod compatibility</li>
+                    <li><strong>🛠️ Admin Tools:</strong> Enhanced server management and performance optimization</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="discord-section">
+            <h2>💬 Join Our Community!</h2>
+            <p>Connect with other players, get help, and stay updated on server events!</p>
+            <a href="https://discord.gg/bAuc7WvRUd" class="discord-btn" target="_blank">
+                🎮 Join Discord Server
+            </a>
+        </div>
+
+        <div class="info-card">
+            <h3>📚 Additional Resources</h3>
+            <ul class="features-list">
+                <li>
+                    <strong>📖 Official Wiki:</strong> 
+                    <a href="https://project-overpowered.gitbook.io/project-overpowered-official-wiki" target="_blank" style="color: #3498db;">
+                        Project Overpowered Wiki
+                    </a>
+                </li>
+                <li>
+                    <strong>📦 Modpack Download:</strong> 
+                    <a href="https://www.curseforge.com/minecraft/modpacks/project-overpowered" target="_blank" style="color: #3498db;">
+                        CurseForge Page
+                    </a>
+                </li>
+                <li>
+                    <strong>👤 Modpack Author:</strong> 
+                    <a href="https://www.curseforge.com/members/simplyblizz" target="_blank" style="color: #3498db;">
+                        SimplyBlizz
+                    </a>
+                </li>
+                <li>
+                    <strong>👤 Community Server Manager:</strong> 
+                    <span style="color: #e67e22; font-weight: bold;">Rockoran</span>
+                </li>
+                <li><strong>🎯 Focus:</strong> Beginner-friendly, fast progression, overpowered gameplay</li>
+                <li><strong>🏆 Downloads:</strong> 429.4K+ on CurseForge</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Project Overpowered Skyblock Server | Modpack by SimplyBlizz</p>
+            <p>Not affiliated with Mojang Studios or Microsoft</p>
+        </footer>
+    </div>
+</body>
+</html>
